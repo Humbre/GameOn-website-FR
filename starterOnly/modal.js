@@ -40,11 +40,11 @@ function closeModal(){
 btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
-  if (validateData()){
-    alert("error");
-  } else{
+  if (validateData.value()){
     alert('Merci, votre candidature a bien été reçue.');
     modalbg.style.display = "none";
+  } else{
+    var error;
   }
 
 }
@@ -52,61 +52,37 @@ function sendData(){
 function validateData(){
   var error;
 
-  if (firstName.value <2){ // value en chiffre !
-    error = 'Veuillez rentrer votre prénom';
+  if (firstName.lenght <2){ // ecrire la phrase dans le formulaire
+    return error;
+    //firstName.alert('Votre prénom doit faire minimum 2 caractères');
   }
-  if (!lastName.value <2){
-    error = 'Veuillez rentrer votre nom';
+  if (lastName.lenght <2){
+    return error;
+    //lastName.alert('Votre nom doit faire minimum 2 caractères');
   }
-  if (email.value != "love@gmail.com"){
-    error = 'Veuillez rentrer une adresse email valide';
-  }
+  //if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
+  //  return error;
+    //email.alert('Veuillez rentrer une adresse email valide');
+  //}
   if (!birthdate.value){
-    error = 'Veuillez rentrer votre date de naissance';
+    return error;
+    //birthdate.alert('Veuillez rentrer votre date de naissance');
   }
   if (!quantity.value){
-    error = 'Veuillez entrer un nombre entre 0 et 999';
+    return error;
+    //quantity.alert('Veuillez entrer un nombre entre 0 et 999');
   }
   if (!checkBox1.value){
-    error = 'Veuillez cocher une des cases suivantes';
+    return error;
+    //checkBox1.alert('Veuillez cocher une des cases suivantes');
   }
   if (!checkBox2.value){
-    error = "Veuillez accepter les condition d'utilisation";
+    return error;
+    //checkBox2.alert("Veuillez accepter les condition d'utilisation");
   }
-  return error;
 
 }
 // rajouter un paramètre : message d'erreur si données non envoyées
-
-
-
-
-//document.getElementById('form').addEventListener('submit', function() {
-//  var erreur;
-
-//  if (firstName.value <2){
-//    erreur = 'Veuillez rentrer votre prénom';
-//  }
-//  if (!lastName.value <2){
-//    erreur = 'Veuillez rentrer votre nom';
-//  }
-//  if (email.value != "love@gmail.com"){
-//    erreur = 'Veuillez rentrer une adresse email valide';
-//  }
-//  if (!birthdate.value){
-//    erreur = 'Veuillez rentrer votre date de naissance';
-//  }
-//  if (!quantity.value){
-//    erreur = 'Veuillez entrer un nombre entre 0 et 999';
-//  }
-//  if (!checkBox1.value){
-//    erreur = 'Veuillez cocher une des cases suivantes';
-//  }
-//  if (!checkBox2.value){
-//    erreur = "Veuillez accepter les condition d'utilisation";
-//  }
-
-//});
 
 
 

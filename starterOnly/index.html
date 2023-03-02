@@ -58,26 +58,26 @@
             <form name="reserve" action="index.html" method="get" onsubmit="return validate();" id="form">
               <div class="formData">
                 <label>Prénom</label><br>
-                <input class="text-control" type="text" id="first" name="first" minlength="2"/> <br>
+                <input class="text-control" type="text" id="first" name="first" minlength="2" oninvalid="alert('Veuillez rentrer un prénom de plus de 2 caractères');" required/> <br>
               </div>
               <div class="formData">
                 <label>Nom</label> <br>
-                <input class="text-control" type="text"id="last" name="last" minlength="2"/><br>
+                <input class="text-control" type="text"id="last" name="last" minlength="2" oninvalid="alert('Veuillez rentrer un nom de plus de 2 caractères');" required/><br>
               </div>
               <div class="formData">
                 <label>E-mail</label> <br>
-                <input class="text-control" type="email" id="email"name="email"pattern=".+@globex\.com" size="30" required/><br>
+                <input class="text-control" type="email" id="email"name="email"pattern=".+@gmail\.com" size="30" oninvalid="alert('Veuillez rentrer une adresse mail valide!');"required/><br>
               </div>
               <div class="formData">
                 <label>Date de naissance</label><br>
-                <input class="text-control"type="date" id="birthdate"name="birthdate"/><br>
+                <input class="text-control"type="date" id="birthdate"name="birthdate" oninvalid="alert('Veuillez entrer votre date de naissance');" required/><br>
               </div>
               <div class="formData">
                 <label> À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" oninvalid="alert('Veuillez entrer un chiffre entre 1 et 99');" required>
               </div>
                 <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div class="formData" id="checkBox1">
+              <div class="formData" id="checkBox1" oninvalid="alert('Veuillez cocher au moins une case');" required>
                 <input class="checkbox-input"type="radio"id="location1"name="location" value="New York"/>
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
@@ -111,7 +111,7 @@
               </div>
               <div class="formData" id="checkBox2">
                 <input class="checkbox-input"type="checkbox"id="checkbox1"checked/>
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1" required oninvalid="alert('Vous devez accepter les conditions d'utilisation');" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
