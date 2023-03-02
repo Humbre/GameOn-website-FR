@@ -44,45 +44,47 @@ function sendData(){
     alert('Merci, votre candidature a bien été reçue.');
     modalbg.style.display = "none";
   } else{
-    var error;
+    alert('Il y a eu une erreur, veuillez réessayer');
   }
 
 }
 
+// Validation des données
 function validateData(){
   var error;
 
   if (firstName.lenght <2){ // ecrire la phrase dans le formulaire
     return error;
-    //firstName.alert('Votre prénom doit faire minimum 2 caractères');
+    document.getElementById("firstName").innerHTML = "Votre prénom doit faire minimum 2 caractères"
   }
   if (lastName.lenght <2){
     return error;
-    //lastName.alert('Votre nom doit faire minimum 2 caractères');
+    document.getElementById("lastName").innerHTML = "Votre nom doit faire minimum 2 caractères"
   }
-  //if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
-  //  return error;
-    //email.alert('Veuillez rentrer une adresse email valide');
-  //}
+  if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
+    return error;
+  document.getElementById("mail").innerHTML = "Veuillez rentrer une adresse email valide"
+  }
   if (!birthdate.value){
     return error;
-    //birthdate.alert('Veuillez rentrer votre date de naissance');
+    document.getElementById("birthday").innerHTML = "Veuillez rentrer votre date de naissance"
   }
   if (!quantity.value){
     return error;
-    //quantity.alert('Veuillez entrer un nombre entre 0 et 999');
+    document.getElementById("quantityTourn").innerHTML = "Veuillez entrer un nombre entre 0 et 999"
   }
   if (!checkBox1.value){
     return error;
-    //checkBox1.alert('Veuillez cocher une des cases suivantes');
+    document.getElementById("check1").innerHTML = "Veuillez cocher une des cases suivantes"
   }
   if (!checkBox2.value){
     return error;
-    //checkBox2.alert("Veuillez accepter les condition d'utilisation");
+    document.getElementById("check2").innerHTML = "Veuillez accepter les condition d'utilisation"
+  
   }
 
 }
-// rajouter un paramètre : message d'erreur si données non envoyées
+
 
 
 
