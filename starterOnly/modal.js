@@ -40,6 +40,9 @@ function closeModal(){
 btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
+  return errors;
+  showErrors();
+
   if (validateData.value()){
     alert('Merci, votre candidature a bien été reçue.');
     modalbg.style.display = "none";
@@ -51,38 +54,77 @@ function sendData(){
 
 // Validation des données
 function validateData(){
-  var error;
+  let errors = {};
 
-  if (firstName.lenght <2){ // ecrire la phrase dans le formulaire
-    return error;
-    document.getElementById("firstName").innerHTML = "Votre prénom doit faire minimum 2 caractères"
+  if (firstName.value.lenght <2){ 
+    errors.firstName = "Votre prénom doit faire minimum 2 caractères";
   }
-  if (lastName.lenght <2){
-    return error;
-    document.getElementById("lastName").innerHTML = "Votre nom doit faire minimum 2 caractères"
+  if (lastName.value.lenght <2){
+    errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
   if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
-    return error;
-  document.getElementById("mail").innerHTML = "Veuillez rentrer une adresse email valide"
+    errors.email = "Veuillez rentrer une adresse email valide";
   }
   if (!birthdate.value){
-    return error;
-    document.getElementById("birthday").innerHTML = "Veuillez rentrer votre date de naissance"
+    errors.birthDate = "Veuillez rentrer votre date de naissance";
   }
   if (!quantity.value){
-    return error;
-    document.getElementById("quantityTourn").innerHTML = "Veuillez entrer un nombre entre 0 et 999"
+    errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
   if (!checkBox1.value){
-    return error;
-    document.getElementById("check1").innerHTML = "Veuillez cocher une des cases suivantes"
+    errors.checkBox1 = "Veuillez cocher une des cases suivantes";
   }
   if (!checkBox2.value){
-    return error;
-    document.getElementById("check2").innerHTML = "Veuillez accepter les condition d'utilisation"
-  
+    errors.checkBox2 = "Veuillez accepter les condition d'utilisation";
+  }
+  return errors;
+}
+
+// affichage des erreurs
+
+function showErrors(){
+
+  if (errors.firstName = true) {
+    document.getElementById("firstNameError").innerHTML = errors.firstName;
+  } else{
+    document.getElementById("firstNameError").innerHTML = "";
   }
 
+  if (errors.lastName = true) {
+    document.getElementById("lastNameError").innerHTML = errors.lastName;
+  } else{
+    document.getElementById("lastNameError").innerHTML = "";
+  } 
+
+  if (errors.email = true) {
+    document.getElementById("mailError").innerHTML = errors.email;
+  } else{
+    document.getElementById("mailError").innerHTML = "";
+  } 
+
+  if (errors.birthdate = true) {
+    document.getElementById("birthdateError").innerHTML = errors.birthdate;
+  } else{
+    document.getElementById("birthdateError").innerHTML = "";
+  }  
+  
+  if (errors.quantity = true) {
+    document.getElementById("quantityError").innerHTML = errors.quantity;
+  } else{
+    document.getElementById("quantityError").innerHTML = "";
+  }  
+  
+  if (errors.checkBox1 = true) {
+    document.getElementById("check1Error").innerHTML = errors.checkBox1;
+  } else{
+    document.getElementById("check1Error").innerHTML = "";
+  }  
+  
+  if (errors.checkBox2 = true) {
+    document.getElementById("check2Error").innerHTML = errors.checkBox2;
+  } else{
+    document.getElementById("check2Error").innerHTML = "";
+  }
 }
 
 
