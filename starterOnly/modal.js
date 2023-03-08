@@ -36,12 +36,16 @@ function closeModal(){
   modalbg.style.display = "none";
 }
 
-// FERMER LE FORMULAIRE QUAND DONNEES ENVOYEES + message d'erreur
+// FERMER LE FORMULAIRE QUAND DONNEES ENVOYEES + messages d'erreur
 btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
-  return errors;
-  showErrors();
+  //return errors; on ne peut pas retourner cette fonction au début ?
+  if(Object.keys(errors).length > 0){
+    showErrors();
+  }else{
+    '';
+  }
 
   if (validateData.value()){
     alert('Merci, votre candidature a bien été reçue.');
@@ -65,7 +69,7 @@ function validateData(){
   if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
     errors.email = "Veuillez rentrer une adresse email valide";
   }
-  if (!birthdate.value){
+  if (!birthDate.value){
     errors.birthDate = "Veuillez rentrer votre date de naissance";
   }
   if (!quantity.value){
@@ -80,9 +84,9 @@ function validateData(){
   return errors;
 }
 
-// affichage des erreurs
 
-function showErrors(){
+// affichage des erreurs
+function showErrors(errors){
 
   if (errors.firstName = true) {
     document.getElementById("firstNameError").innerHTML = errors.firstName;
@@ -102,8 +106,8 @@ function showErrors(){
     document.getElementById("mailError").innerHTML = "";
   } 
 
-  if (errors.birthdate = true) {
-    document.getElementById("birthdateError").innerHTML = errors.birthdate;
+  if (errors.birthDate = true) { 
+    document.getElementById("birthdateError").innerHTML = errors.birthDate;
   } else{
     document.getElementById("birthdateError").innerHTML = "";
   }  
@@ -125,6 +129,7 @@ function showErrors(){
   } else{
     document.getElementById("check2Error").innerHTML = "";
   }
+  // Est-ce qu'il y a un truc à retourner à la fin ?
 }
 
 
