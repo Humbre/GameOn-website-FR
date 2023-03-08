@@ -41,17 +41,19 @@ btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
   //return errors; on ne peut pas retourner cette fonction au début ?
-  if(Object.keys(errors).length > 0){
+  if(Object.keys(errors).length > 0){ // pourquoi supérieur à 0 ?
     showErrors();
   }else{
     '';
   }
 
-  if (validateData.value()){
+  if (validateData.value(errors).length = 0){
     alert('Merci, votre candidature a bien été reçue.');
     modalbg.style.display = "none";
   } else{
     alert('Il y a eu une erreur, veuillez réessayer');
+    modalbg.style.display = "block";
+    // garder les données à l'intérieur du modal ?
   }
 
 }
@@ -68,6 +70,7 @@ function validateData(){
   }
   if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
     errors.email = "Veuillez rentrer une adresse email valide";
+    // Comment faire pour que l'adresse mail soit valide
   }
   if (!birthDate.value){
     errors.birthDate = "Veuillez rentrer votre date de naissance";
