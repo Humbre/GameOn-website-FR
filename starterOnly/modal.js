@@ -18,8 +18,8 @@ const lastName = document.getElementById('last'); // 2 caractères ou plus
 const email = document.getElementById('email'); // email
 const birthDate = document.getElementById('birthdate'); //rentrer date de naissance
 const quantity = document.getElementById('quantity'); //chiffre entre 0 et 999
-const checkBox1 = document.getElementById('checkBox1'); //cocher un des éléments obligatoire
-const checkBox2 = document.getElementById('checkbox1'); // conditions d'utilisation
+//const checkBox1 = document.getElementById('checkBox1'); //cocher un des éléments obligatoire
+//const checkBox2 = document.getElementById('checkbox1'); // conditions d'utilisation
 
 // OUVRIR FORMULAIRE
 modalBtn.addEventListener("click", launchModal);
@@ -40,20 +40,16 @@ function closeModal(){
 btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
-  //return errors; on ne peut pas retourner cette fonction au début ?
-  if(Object.keys(errors).length > 0){ // pourquoi supérieur à 0 ?
-    showErrors();
-  }else{
-    '';
-  }
+  let errors = validateData();
 
-  if (validateData.value(errors).length = 0){
-    alert('Merci, votre candidature a bien été reçue.');
-    modalbg.style.display = "none";
-  } else{
+  showErrors();
+
+  if(Object.keys(errors).length > 0){ 
     alert('Il y a eu une erreur, veuillez réessayer');
     modalbg.style.display = "block";
-    // garder les données à l'intérieur du modal ?
+  }else{
+    alert('Merci, votre candidature a bien été reçue.');
+    modalbg.style.display = "none";
   }
 
 }
@@ -62,15 +58,15 @@ function sendData(){
 function validateData(){
   let errors = {};
 
-  if (firstName.value.lenght <2){ 
+  if (firstName.value.length <2){ 
     errors.firstName = "Votre prénom doit faire minimum 2 caractères";
   }
-  if (lastName.value.lenght <2){
+  if (lastName.value.length <2){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
   if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
     errors.email = "Veuillez rentrer une adresse email valide";
-    // Comment faire pour que l'adresse mail soit valide
+    // utiliser des r
   }
   if (!birthDate.value){
     errors.birthDate = "Veuillez rentrer votre date de naissance";
@@ -78,10 +74,10 @@ function validateData(){
   if (!quantity.value){
     errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
-  if (!checkBox1:checked).value{
+  if (document.querySelector('checkBox1':checked).value !== 'on'){
     errors.checkBox1 = "Veuillez cocher une des cases suivantes";
   }
-  if (!checkBox2:checked).value{
+  if (document.getElementById('checkbox1':checked).value !== 'on'){
     errors.checkBox2 = "Veuillez accepter les condition d'utilisation";
   }
   return errors;
@@ -91,48 +87,48 @@ function validateData(){
 // affichage des erreurs
 function showErrors(errors){
 
-  if (errors.firstName = true) {
+  if (errors.firstName) {
     document.getElementById("firstNameError").innerHTML = errors.firstName;
   } else{
     document.getElementById("firstNameError").innerHTML = "";
   }
 
-  if (errors.lastName = true) {
+  if (errors.lastName) {
     document.getElementById("lastNameError").innerHTML = errors.lastName;
   } else{
     document.getElementById("lastNameError").innerHTML = "";
   } 
 
-  if (errors.email = true) {
+  if (errors.email) {
     document.getElementById("mailError").innerHTML = errors.email;
   } else{
     document.getElementById("mailError").innerHTML = "";
   } 
 
-  if (errors.birthDate = true) { 
+  if (errors.birthDate) { 
     document.getElementById("birthdateError").innerHTML = errors.birthDate;
   } else{
     document.getElementById("birthdateError").innerHTML = "";
   }  
   
-  if (errors.quantity = true) {
+  if (errors.quantity) {
     document.getElementById("quantityError").innerHTML = errors.quantity;
   } else{
     document.getElementById("quantityError").innerHTML = "";
   }  
   
-  if (errors.checkBox1 = true) {
+  if (errors.checkBox1) {
     document.getElementById("check1Error").innerHTML = errors.checkBox1;
   } else{
     document.getElementById("check1Error").innerHTML = "";
   }  
   
-  if (errors.checkBox2 = true) {
+  if (errors.checkBox2) {
     document.getElementById("check2Error").innerHTML = errors.checkBox2;
   } else{
     document.getElementById("check2Error").innerHTML = "";
   }
-  // Est-ce qu'il y a un truc à retourner à la fin ?
+  
 }
 
 
