@@ -78,10 +78,10 @@ function validateData(){
   if (!quantity.value){
     errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
-  if (!checkBox1.value){
+  if (!checkBox1:checked).value{
     errors.checkBox1 = "Veuillez cocher une des cases suivantes";
   }
-  if (!checkBox2.value){
+  if (!checkBox2:checked).value{
     errors.checkBox2 = "Veuillez accepter les condition d'utilisation";
   }
   return errors;
