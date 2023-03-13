@@ -16,10 +16,10 @@ const btnSubmit = document.querySelector(".btn-submit");
 const firstName = document.getElementById('first'); // 2 caractères ou plus
 const lastName = document.getElementById('last'); // 2 caractères ou plus
 const email = document.getElementById('email'); // email
+var expressionReguliere = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
 const birthDate = document.getElementById('birthdate'); //rentrer date de naissance
 const quantity = document.getElementById('quantity'); //chiffre entre 0 et 999
-//const checkBox1 = document.getElementById('checkBox1'); //cocher un des éléments obligatoire
-//const checkBox2 = document.getElementById('checkbox1'); // conditions d'utilisation
+//const checkBox1 = document.getElementById('checkbox1:checked'); // conditions d'utilisation
 
 // OUVRIR FORMULAIRE
 modalBtn.addEventListener("click", launchModal);
@@ -40,9 +40,9 @@ function closeModal(){
 btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
-  let errors = validateData();
 
-  showErrors();
+  let errors = validateData(); // Un problème ici ?
+  showErrors(errors);
 
   if(Object.keys(errors).length > 0){ 
     alert('Il y a eu une erreur, veuillez réessayer');
@@ -64,9 +64,9 @@ function validateData(){
   if (lastName.value.length <2){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
-  if (email.value !== "mysite@outlook.fr" || "my.ownsite@ourearth.org" || "mysite@you.me.net" || "mysite@gmail.com"){
+  if (expressionReguliere.test != email.value ){
     errors.email = "Veuillez rentrer une adresse email valide";
-    // utiliser des r
+    
   }
   if (!birthDate.value){
     errors.birthDate = "Veuillez rentrer votre date de naissance";
@@ -74,11 +74,11 @@ function validateData(){
   if (!quantity.value){
     errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
-  if (document.querySelector('checkBox1':checked).value !== 'on'){
-    errors.checkBox1 = "Veuillez cocher une des cases suivantes";
+  if (document.querySelector('.checkbox-input1:checked').value !== 'on'){
+    errors.checkBox = "Veuillez cocher une des cases précédentes";
   }
-  if (document.getElementById('checkbox1':checked).value !== 'on'){
-    errors.checkBox2 = "Veuillez accepter les condition d'utilisation";
+  if (document.querySelector('.checkbox-input2:checked').value !== 'on'){
+    errors.checkBox1 = "Veuillez accepter les condition d'utilisation";
   }
   return errors;
 }
@@ -117,13 +117,13 @@ function showErrors(errors){
     document.getElementById("quantityError").innerHTML = "";
   }  
   
-  if (errors.checkBox1) {
+  if (errors.checkBox) {
     document.getElementById("check1Error").innerHTML = errors.checkBox1;
   } else{
     document.getElementById("check1Error").innerHTML = "";
   }  
   
-  if (errors.checkBox2) {
+  if (errors.checkBox1) {
     document.getElementById("check2Error").innerHTML = errors.checkBox2;
   } else{
     document.getElementById("check2Error").innerHTML = "";
