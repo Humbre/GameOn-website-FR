@@ -16,7 +16,6 @@ const btnSubmit = document.querySelector(".btn-submit");
 const firstName = document.getElementById('first'); // 2 caractères ou plus
 const lastName = document.getElementById('last'); // 2 caractères ou plus
 const email = document.getElementById('email'); // email
-var expressionReguliere = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
 const birthDate = document.getElementById('birthdate'); //rentrer date de naissance
 const quantity = document.getElementById('quantity'); //chiffre entre 0 et 999
 //const checkBox1 = document.getElementById('checkbox1:checked'); // conditions d'utilisation
@@ -57,6 +56,7 @@ function sendData(){
 // Validation des données
 function validateData(){
   let errors = {};
+  var expressionReguliere = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
 
   if (firstName.value.length <2){ 
     errors.firstName = "Votre prénom doit faire minimum 2 caractères";
@@ -64,7 +64,7 @@ function validateData(){
   if (lastName.value.length <2){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
-  if (expressionReguliere.test != email.value ){
+  if (expressionReguliere.test !== email.value ){
     errors.email = "Veuillez rentrer une adresse email valide";
     
   }
