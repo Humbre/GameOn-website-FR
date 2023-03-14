@@ -56,7 +56,11 @@ function sendData(){
 // Validation des données
 function validateData(){
   let errors = {};
-  var expressionReguliere = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+  var expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+  var resultEmail = expressionReguliereMail.test(email);
+
+  var quantityRegex = /^(?:0|[1-9]\d{0,2})$/;
+  var resultQuantity= quantityRegex.test(quantity);
 
   if (firstName.value.length <2){ 
     errors.firstName = "Votre prénom doit faire minimum 2 caractères";
@@ -64,20 +68,20 @@ function validateData(){
   if (lastName.value.length <2){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
-  if (expressionReguliere.test(email) !== true ){
+  if (resultEmail !== true ){
     errors.email = "Veuillez entrer une adresse email valide";
     
   }
   if (!birthDate.value){
     errors.birthDate = "Veuillez entrer votre date de naissance";
   }
-  if (!quantity.value){
+  if (resultQuantity !== true){
     errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
-  if (document.querySelector('.checkbox-input1:checked').value !== 'on' ){
+  if (document.querySelector('.checkbox-input1').value !== 'on' ){
     errors.checkBox = "Veuillez cocher une des cases précédentes";
   }
-  if (document.querySelector('.checkbox-input2:checked').value !== 'on' ){
+  if (document.querySelector('.checkbox-input2').value !== 'on' ){
     errors.checkBox1 = "Veuillez accepter les condition d'utilisation";
   }
   return errors;
