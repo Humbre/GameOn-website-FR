@@ -64,20 +64,20 @@ function validateData(){
   if (lastName.value.length <2){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
-  if (expressionReguliere.test !== email.value ){
-    errors.email = "Veuillez rentrer une adresse email valide";
+  if (expressionReguliere.test(email) !== true ){
+    errors.email = "Veuillez entrer une adresse email valide";
     
   }
   if (!birthDate.value){
-    errors.birthDate = "Veuillez rentrer votre date de naissance";
+    errors.birthDate = "Veuillez entrer votre date de naissance";
   }
   if (!quantity.value){
     errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
-  if (document.querySelector('.checkbox-input1:checked').value !== 'on'){
+  if (document.querySelector('.checkbox-input1:checked').value !== 'on' ){
     errors.checkBox = "Veuillez cocher une des cases précédentes";
   }
-  if (document.querySelector('.checkbox-input2:checked').value !== 'on'){
+  if (document.querySelector('.checkbox-input2:checked').value !== 'on' ){
     errors.checkBox1 = "Veuillez accepter les condition d'utilisation";
   }
   return errors;
