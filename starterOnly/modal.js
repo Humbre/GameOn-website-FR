@@ -56,9 +56,13 @@ function sendData(){
 // Validation des données
 function validateData(){
   let errors = {};
-  var expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
-  var resultEmail = expressionReguliereMail.test(email);
 
+  //regex email
+  var expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+  //var resultEmail = expressionReguliereMail.test(email);
+  var email = $("#email").val();
+
+ // regex quantité
   var quantityRegex = /^(?:0|[1-9]\d{0,2})$/;
   var resultQuantity= quantityRegex.test;
 
@@ -68,7 +72,7 @@ function validateData(){
   if (lastName.value.length <2){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
-  if (resultEmail !== true ){
+  if (!validerEmail(email)){
     errors.email = "Veuillez entrer une adresse email valide";
     
   }
