@@ -60,7 +60,7 @@ function validateData(){
   var resultEmail = expressionReguliereMail.test(email);
 
   var quantityRegex = /^(?:0|[1-9]\d{0,2})$/;
-  var resultQuantity= quantityRegex.test(quantity);
+  var resultQuantity= quantityRegex.test;
 
   if (firstName.value.length <2){ 
     errors.firstName = "Votre prénom doit faire minimum 2 caractères";
@@ -78,10 +78,10 @@ function validateData(){
   if (resultQuantity !== true){
     errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
-  if (document.querySelector('.checkbox-input1').value !== 'on' ){
+  if (!document.querySelector('.checkbox-input1:checked')) {
     errors.checkBox = "Veuillez cocher une des cases précédentes";
   }
-  if (document.querySelector('.checkbox-input2').value !== 'on' ){
+  if (!document.querySelector('.checkbox-input2:checked')) {
     errors.checkBox1 = "Veuillez accepter les condition d'utilisation";
   }
   return errors;
@@ -122,13 +122,13 @@ function showErrors(errors){
   }  
   
   if (errors.checkBox) {
-    document.getElementById("check1Error").innerHTML = errors.checkBox1;
+    document.getElementById("check1Error").innerHTML = errors.checkBox;
   } else{
     document.getElementById("check1Error").innerHTML = "";
   }  
   
   if (errors.checkBox1) {
-    document.getElementById("check2Error").innerHTML = errors.checkBox2;
+    document.getElementById("check2Error").innerHTML = errors.checkBox1;
   } else{
     document.getElementById("check2Error").innerHTML = "";
   }
