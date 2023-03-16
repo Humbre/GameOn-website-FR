@@ -18,7 +18,6 @@ const lastName = document.getElementById('last'); // 2 caractères ou plus
 const email = document.getElementById('email'); // email
 const birthDate = document.getElementById('birthdate'); //rentrer date de naissance
 const quantity = document.getElementById('quantity'); //chiffre entre 0 et 999
-//const checkBox1 = document.getElementById('checkbox1:checked'); // conditions d'utilisation
 
 // OUVRIR FORMULAIRE
 modalBtn.addEventListener("click", launchModal);
@@ -40,7 +39,7 @@ btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
 
-  let errors = validateData(); // Un problème ici ?
+  let errors = validateData(); 
   showErrors(errors);
 
   if(Object.keys(errors).length > 0){ 
@@ -58,13 +57,10 @@ function validateData(){
   let errors = {};
 
   //regex email
-  var expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
-  //var resultEmail = expressionReguliereMail.test(email);
-  var email = $("#email").val();
+  let expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
 
  // regex quantité
-  var quantityRegex = /^(?:0|[1-9]\d{0,2})$/;
-  var resultQuantity= quantityRegex.test;
+  let quantityRegex = /^(?:0|[1-9]\d{0,2})$/;
 
   if (firstName.value.length <2){ 
     errors.firstName = "Votre prénom doit faire minimum 2 caractères";
@@ -72,14 +68,14 @@ function validateData(){
   if (lastName.value.length <2){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
-  if (!validerEmail(email)){
+  if (!expressionReguliereMail.test(email.value)){
     errors.email = "Veuillez entrer une adresse email valide";
     
   }
   if (!birthDate.value){
     errors.birthDate = "Veuillez entrer votre date de naissance";
   }
-  if (resultQuantity !== true){
+  if (!quantityRegex.test(quantity.value)){
     errors.quantity = "Veuillez entrer un nombre entre 0 et 999";
   }
   if (!document.querySelector('.checkbox-input1:checked')) {
