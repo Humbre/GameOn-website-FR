@@ -1,3 +1,4 @@
+// fonction menu burger responsive
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -7,34 +8,42 @@ function editNav() {
   }
 }
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelector(".modal-btn");
-const formData = document.querySelector(".formData");
-const closeBtn = document.querySelector(".close");
-const btnSubmit = document.querySelector(".btn-submit");
-const firstName = document.getElementById('first'); // 2 caractères ou plus
-const lastName = document.getElementById('last'); // 2 caractères ou plus
+// constantes du dom
+const modalbg = document.querySelector(".bground"); //background
+const modalBtn = document.getElementsByClassName(".btn-signup"); // deux boutons je m'inscris
+const formData = document.querySelector(".formData"); // formulaire
+const closeBtn = document.querySelector(".close"); // croix pour fermer la modale
+const btnSubmit = document.querySelector(".btn-submit"); // bouton envoyer les données
+const firstName = document.getElementById('first'); // prénom
+const lastName = document.getElementById('last'); // nom
 const email = document.getElementById('email'); // email
-const birthDate = document.getElementById('birthdate'); //rentrer date de naissance
-const quantity = document.getElementById('quantity'); //chiffre entre 0 et 999
+const birthDate = document.getElementById('birthdate'); // date de naissance
+const quantity = document.getElementById('quantity'); //quantité, chiffre entre 0 et 999
+const expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/; // regex mail
+const quantityRegex = /^(?:0|[1-9]\d{0,2})$/; // regex quantité
 
-// OUVRIR FORMULAIRE
-modalBtn.addEventListener("click", launchModal);
+
+// evenement + fonction pour ouvrir le formulaire (sur le bouton je m'inscris)
+
+for (i=0, i<modalBtn.length, i++){
+  modalBtn[i].addEventListener("click", launchModal);
+}
 
 function launchModal(){
   modalbg.style.display = "block";
+  modalbg.style.opacity = "1";
 }
 
-// FERMER LE FORMULAIRE CROIX
 
+
+// evenement + fonction pour fermer le formulaire (avec la croix)
 closeBtn.addEventListener("click", closeModal);
 
 function closeModal(){
   modalbg.style.display = "none";
 }
 
-// FERMER LE FORMULAIRE QUAND DONNEES ENVOYEES + messages d'erreur
+// evenement + fonction pour envoyer les données si pas d'erreurs + reset
 btnSubmit.addEventListener("click", sendData);
 
 function sendData(){
@@ -45,22 +54,20 @@ function sendData(){
   if(Object.keys(errors).length > 0){ 
     alert('Il y a eu une erreur, veuillez réessayer');
     modalbg.style.display = "block";
+    // s'il y a une erreur dans les inputs, message pour reessayer
   }else{
-    alert('Merci, votre candidature a bien été reçue.');
+    document.getElementsByClassName(".modal-body").innerHTML = '<p>Merci, votre candidature a bien été reçue.</p>';
     modalbg.style.display = "none";
+    modalbg.style.opacity = "0";
+    document.querySelector('.form[name=reserve]').reset();
+    // s'il n'y a pas d'erreurs, reset + message de bonne reception
   }
 
 }
 
-// Validation des données
+// fonction de verifications que les données entrées soient valides
 function validateData(){
-  let errors = {};
-
-  //regex email
-  let expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
-
- // regex quantité
-  let quantityRegex = /^(?:0|[1-9]\d{0,2})$/;
+  let errors = {}; // erreurs stockées dans objet
 
   if (firstName.value.length <2){ 
     errors.firstName = "Votre prénom doit faire minimum 2 caractères";
@@ -69,8 +76,7 @@ function validateData(){
     errors.lastName = "Votre nom doit faire minimum 2 caractères";
   }
   if (!expressionReguliereMail.test(email.value)){
-    errors.email = "Veuillez entrer une adresse email valide";
-    
+    errors.email = "Veuillez entrer une adresse email valide";   
   }
   if (!birthDate.value){
     errors.birthDate = "Veuillez entrer votre date de naissance";
@@ -88,7 +94,7 @@ function validateData(){
 }
 
 
-// affichage des erreurs
+// fonction d'affichage de données si erreurs + reset de <p> si pas d'erreurs
 function showErrors(errors){
 
   if (errors.firstName) {

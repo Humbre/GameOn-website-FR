@@ -516,6 +516,10 @@ footer {
     text-align: center;
   }
 }
+.checkbox-icon p{
+  color: red;
+  font-size: 15px;
+}
 
 @keyframes modalopen {
   from {
