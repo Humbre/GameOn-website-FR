@@ -10,7 +10,9 @@ function editNav() {
 
 // constantes du dom
 const modalbg = document.querySelector(".bground"); //background
-const formData = document.querySelector(".formData"); // formulaire
+const modalBtn = document.querySelectorAll(".modal-btn"); //boutons d'ouverture de modale
+const formData = document.querySelector(".formData"); // modale formulaire
+const form = document.getElementById('form'); // juste le formulaire à l'interieur de la modale
 const closeBtn = document.querySelector(".close"); // croix pour fermer la modale
 const btnSubmit = document.querySelector(".btn-submit"); // bouton envoyer les données
 const firstName = document.getElementById('first'); // prénom
@@ -22,22 +24,19 @@ const expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+)
 const quantityRegex = /^(?:0|[1-9]\d{0,2})$/; // regex quantité
 
 
+
+// evenement dans boucle pour que le bouton je m'inscris fonctionne en responsive 
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
 // + fonction pour ouvrir le formulaire (sur le bouton je m'inscris)
 function launchModal(){
   modalbg.style.display = "block";
   modalbg.style.opacity = 1;
 }
 
-// evenement dans boucle pour que le bouton je m'inscris fonctionne en responsive 
-let modalBtn = document.getElementsByClassName(".modal-btn"); // deux boutons je m'inscris (desktop + responsive)
-
-for ( i=0; i<modalBtn.length; i++){
-  modalBtn[i].addEventListener("click", launchModal);
-}
-
-
 // evenement pour fermer la modale
 closeBtn.addEventListener("click", closeModal);
+
 //+ fonction pour fermer le formulaire (avec la croix)
 function closeModal(){
   modalbg.style.display = "none";
@@ -56,14 +55,15 @@ function sendData(){
     modalbg.style.display = "block";
     // s'il y a une erreur dans les inputs, message pour reessayer
   }else{
-    document.getElementsByClassName(".modal-body").innerHTML = '<p>Merci, votre candidature a bien été reçue.</p>';
-    modalbg.style.display = "none";
-    modalbg.style.opacity = 0;
-    document.querySelector('.form[name=reserve]').reset();
+    modalbg.style.display = "block";
+    document.getElementById("validateFormData").innerText = 'Merci, votre candidature a été bien reçue';
+    form.style.opacity = 0;
+    form.reset();
     // s'il n'y a pas d'erreurs, reset + message de bonne reception
   }
 
 }
+
 
 // fonction de verifications que les données entrées soient valides
 function validateData(){
