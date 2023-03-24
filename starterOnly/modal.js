@@ -10,7 +10,6 @@ function editNav() {
 
 // constantes du dom
 const modalbg = document.querySelector(".bground"); //background
-const modalBtn = document.getElementsByClassName(".btn-signup"); // deux boutons je m'inscris (desktop + responsive)
 const formData = document.querySelector(".formData"); // formulaire
 const closeBtn = document.querySelector(".close"); // croix pour fermer la modale
 const btnSubmit = document.querySelector(".btn-submit"); // bouton envoyer les données
@@ -23,16 +22,18 @@ const expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+)
 const quantityRegex = /^(?:0|[1-9]\d{0,2})$/; // regex quantité
 
 
-// evenement dans boucle pour que le bouton je m'inscris fonctionne en responsive 
-for (i=0, i<modalBtn.length, i++){
-  modalBtn[i].addEventListener("click", launchModal);
-}
 // + fonction pour ouvrir le formulaire (sur le bouton je m'inscris)
 function launchModal(){
   modalbg.style.display = "block";
-  modalbg.style.opacity = "1";
+  modalbg.style.opacity = 1;
 }
 
+// evenement dans boucle pour que le bouton je m'inscris fonctionne en responsive 
+let modalBtn = document.getElementsByClassName(".modal-btn"); // deux boutons je m'inscris (desktop + responsive)
+
+for ( i=0; i<modalBtn.length; i++){
+  modalBtn[i].addEventListener("click", launchModal);
+}
 
 
 // evenement pour fermer la modale
@@ -57,7 +58,7 @@ function sendData(){
   }else{
     document.getElementsByClassName(".modal-body").innerHTML = '<p>Merci, votre candidature a bien été reçue.</p>';
     modalbg.style.display = "none";
-    modalbg.style.opacity = "0";
+    modalbg.style.opacity = 0;
     document.querySelector('.form[name=reserve]').reset();
     // s'il n'y a pas d'erreurs, reset + message de bonne reception
   }
