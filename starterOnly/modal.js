@@ -24,7 +24,6 @@ const expressionReguliereMail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+)
 const quantityRegex = /^(?:0|[1-9]\d{0,2})$/; // regex quantité
 
 
-
 // evenement dans boucle pour que le bouton je m'inscris fonctionne en responsive 
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
