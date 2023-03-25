@@ -63,7 +63,6 @@ function sendData(){
     document.getElementById("closeValidateModal").innerHTML= '<input class="btn-submit" type="submit" class="button" onclick="closeModal()" value="Fermer"/>'
     form.style.visibility = "hidden";
     form.reset();
-    formData.reset();
     // s'il n'y a pas d'erreurs, reset + message de bonne reception
   }
 
