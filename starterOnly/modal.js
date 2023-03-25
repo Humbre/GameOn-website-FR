@@ -31,7 +31,10 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // + fonction pour ouvrir le formulaire (sur le bouton je m'inscris)
 function launchModal(){
   modalbg.style.display = "block";
-  modalbg.style.opacity = 1;
+  form.style.visibility = "visible";
+  form.reset();
+  document.getElementById("validateFormData").innerText = '';
+  document.getElementById("closeValidateModal").innerHTML= '';
 }
 
 // evenement pour fermer la modale
@@ -56,9 +59,11 @@ function sendData(){
     // s'il y a une erreur dans les inputs, message pour reessayer
   }else{
     modalbg.style.display = "block";
-    document.getElementById("validateFormData").innerText = 'Merci, votre candidature a été bien reçue';
-    form.style.opacity = 0;
+    document.getElementById("validateFormData").innerText = 'Merci, pour votre inscription';
+    document.getElementById("closeValidateModal").innerHTML= '<input class="btn-submit" type="submit" class="button" onclick="closeModal()" value="Fermer"/>'
+    form.style.visibility = "hidden";
     form.reset();
+    formData.reset();
     // s'il n'y a pas d'erreurs, reset + message de bonne reception
   }
 

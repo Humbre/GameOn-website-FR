@@ -67,6 +67,10 @@ img {
 .topnav .icon {
   display: none;
 }
+.logo{
+  width: auto;
+  height: auto;
+}
 
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
@@ -519,6 +523,14 @@ footer {
 .formData p{
   color: red;
   font-size: 15px;
+}
+
+#validateFormData{
+  text-align: center;
+  position: absolute;
+  top:45%;
+  right: 25%;
+  width: 50%;
 }
 
 @keyframes modalopen {
