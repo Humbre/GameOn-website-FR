@@ -117,6 +117,11 @@ img {
     margin-top: -15px;
   }
 } 
+.hero-content .hero-headline {
+  font-size: 3rem;
+  font-weight: normal;
+  white-space: nowrap;
+}
 
 main {
   font-size: 130%;
@@ -511,10 +516,6 @@ footer {
   }
   .hero-content .btn-signup {
     display: none;
-  }
-  .hero-headline {
-    font-size: 3rem;
-    white-space: normal;
   }
   .hero-text {
     width: unset;
