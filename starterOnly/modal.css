@@ -95,7 +95,7 @@ img {
 }
 
 @media screen and (max-width: 946px) {
-  .hero-headline {
+  .hero-content .hero-headline {
     font-size: 5rem;
     font-weight: normal;
     white-space: nowrap;
