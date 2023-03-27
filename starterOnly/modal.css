@@ -101,6 +101,13 @@ img {
     white-space: nowrap;
   }
 }
+@media screen and (max-width: 762px) {
+  .hero-content .hero-headline {
+    font-size: 4rem;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+}
 
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
